@@ -7,7 +7,7 @@ import typing
 
 import numpy as np
 import pandas as pd
-import vose
+# import vose
 
 
 __all__ = ["BayesNet"]
@@ -34,13 +34,14 @@ class CDTAccessor:
         implemention of Vose's alias method that takes O(n) time to build and O(1) time to query.
 
         """
-        if self.sampler is None:
-            self.sampler = vose.Sampler(
-                weights=self.series.to_numpy(dtype=float),
-                seed=np.random.randint(2 ** 16),
-            )
-        idx = self.sampler.sample()
-        return self.series.index[idx]
+        raise NotImplementedError('This function is not implemented since it is not required for this assignment.')
+        # if self.sampler is None:
+        #     self.sampler = vose.Sampler(
+        #         weights=self.series.to_numpy(dtype=float),
+        #         seed=np.random.randint(2 ** 16),
+        #     )
+        # idx = self.sampler.sample()
+        # return self.series.index[idx]
 
     @functools.lru_cache(maxsize=256)
     def __getitem__(self, idx):
